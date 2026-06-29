@@ -260,7 +260,7 @@ function CommandStrip({ metrics }: { metrics: any }) {
 
 function MiniCard({ icon, label, value, accent, trend, highlight }: any) {
   return (
-    <div className={`col-span-1.75 card-soft p-5 ${highlight ? "ring-2 ring-warning/40" : ""}`} style={{ gridColumn: "span 1.75 / span 1.75" }}>
+    <div className={`col-span-2 card-soft p-5 ${highlight ? "ring-2 ring-warning/40" : ""}`}>
       <div className="text-[10px] font-semibold tracking-[0.12em] text-muted-foreground inline-flex items-center gap-1.5">
         {icon} {label}
       </div>
