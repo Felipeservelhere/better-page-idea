@@ -87,7 +87,27 @@ function Page() {
 
       <main className="flex-1 flex min-w-0">
         <section className="flex-1 min-w-0 flex flex-col">
-          <Header />
+          <PageHeader
+            crumb="Clientes & Assinaturas"
+            title="Boa tarde, Felipe"
+            actions={
+              <>
+                <button className="h-9 px-3 inline-flex items-center gap-2 text-sm rounded-lg border border-border hover:bg-muted">
+                  <KeyRound className="size-4" /> Contra-senha
+                </button>
+                <button className="h-9 px-3 inline-flex items-center gap-2 text-sm rounded-lg border border-border hover:bg-muted">
+                  <RefreshCw className="size-4" /> Atualizar
+                </button>
+                <button className="h-9 px-3 inline-flex items-center gap-2 text-sm rounded-lg bg-primary text-primary-foreground hover:opacity-95">
+                  <Plus className="size-4" /> Novo cliente
+                </button>
+                <button className="h-9 w-9 grid place-items-center rounded-lg border border-border hover:bg-muted relative">
+                  <Bell className="size-4" />
+                  <span className="absolute top-1.5 right-1.5 size-1.5 rounded-full bg-primary" />
+                </button>
+              </>
+            }
+          />
           <div className="flex-1 overflow-y-auto px-8 py-6 space-y-6">
             <CommandStrip metrics={metrics} />
             <TimelineStrip />
@@ -106,100 +126,6 @@ function Page() {
         <DetailPanel client={selected} />
       </main>
     </div>
-  );
-}
-
-/* ---------------- Sidebar ---------------- */
-function Sidebar() {
-  const items = [
-    { icon: LayoutDashboard, label: "Clientes & cobranças", active: true },
-    { icon: ClipboardList, label: "Atividade" },
-    { icon: Receipt, label: "Pagamentos" },
-    { icon: ExternalLink, label: "Ver site" },
-  ];
-  return (
-    <aside className="w-64 shrink-0 border-r border-border bg-surface flex flex-col">
-      <div className="p-5 flex items-center gap-3">
-        <div className="size-10 rounded-xl bg-primary/10 grid place-items-center text-primary">
-          <Crown className="size-5" />
-        </div>
-        <div>
-          <div className="font-display text-lg font-semibold leading-none">admgourmet<span className="text-primary">.</span></div>
-          <div className="mt-1 inline-flex text-[10px] font-medium tracking-wider uppercase px-1.5 py-0.5 rounded bg-primary/10 text-primary">Admin</div>
-        </div>
-      </div>
-
-      <div className="px-3 mt-2">
-        <div className="text-[10px] font-semibold tracking-[0.12em] text-muted-foreground px-3 py-2">PAINEL</div>
-        <nav className="space-y-1">
-          {items.slice(0, 2).map((it) => (
-            <NavItem key={it.label} {...it} />
-          ))}
-        </nav>
-        <div className="text-[10px] font-semibold tracking-[0.12em] text-muted-foreground px-3 py-2 mt-4">MARKETPLACE</div>
-        <nav className="space-y-1">
-          {items.slice(2).map((it) => <NavItem key={it.label} {...it} />)}
-        </nav>
-      </div>
-
-      <div className="mt-auto p-4 border-t border-border space-y-3">
-        <div className="flex items-center gap-3 p-2 rounded-xl hover:bg-muted">
-          <div className="size-9 rounded-full bg-primary text-primary-foreground grid place-items-center font-semibold">F</div>
-          <div className="text-sm">
-            <div className="font-medium">Felipe</div>
-            <div className="text-muted-foreground text-xs">@felipe</div>
-          </div>
-        </div>
-        <button className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground px-2">
-          <LogOut className="size-4" /> Sair
-        </button>
-      </div>
-    </aside>
-  );
-}
-
-function NavItem({ icon: Icon, label, active }: { icon: any; label: string; active?: boolean }) {
-  return (
-    <button
-      className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
-        active ? "bg-primary/10 text-primary" : "text-foreground/70 hover:bg-muted hover:text-foreground"
-      }`}
-    >
-      <Icon className="size-4" />
-      <span className="flex-1 text-left">{label}</span>
-      {active && <ChevronRight className="size-4" />}
-    </button>
-  );
-}
-
-/* ---------------- Header ---------------- */
-function Header() {
-  return (
-    <header className="h-16 px-8 flex items-center justify-between border-b border-border bg-surface/60 backdrop-blur">
-      <div>
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <span>Painel</span>
-          <ChevronRight className="size-3" />
-          <span className="text-foreground">Clientes & Assinaturas</span>
-        </div>
-        <h1 className="font-display text-xl font-semibold mt-0.5">Boa tarde, Felipe</h1>
-      </div>
-      <div className="flex items-center gap-2">
-        <button className="h-9 px-3 inline-flex items-center gap-2 text-sm rounded-lg border border-border hover:bg-muted">
-          <KeyRound className="size-4" /> Contra-senha
-        </button>
-        <button className="h-9 px-3 inline-flex items-center gap-2 text-sm rounded-lg border border-border hover:bg-muted">
-          <RefreshCw className="size-4" /> Atualizar
-        </button>
-        <button className="h-9 px-3 inline-flex items-center gap-2 text-sm rounded-lg bg-primary text-primary-foreground hover:opacity-95">
-          <Plus className="size-4" /> Novo cliente
-        </button>
-        <button className="h-9 w-9 grid place-items-center rounded-lg border border-border hover:bg-muted relative">
-          <Bell className="size-4" />
-          <span className="absolute top-1.5 right-1.5 size-1.5 rounded-full bg-primary" />
-        </button>
-      </div>
-    </header>
   );
 }
 
