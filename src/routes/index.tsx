@@ -207,7 +207,7 @@ function Header() {
 function CommandStrip({ metrics }: { metrics: any }) {
   return (
     <div className="grid grid-cols-12 gap-4">
-      <div className="col-span-5 card-soft p-5 relative overflow-hidden">
+      <div className="col-span-4 card-soft p-5 relative overflow-hidden">
         <div className="absolute -right-10 -top-10 size-44 rounded-full bg-primary/10 blur-2xl" />
         <div className="flex items-center justify-between relative">
           <div className="text-xs font-medium text-muted-foreground inline-flex items-center gap-1.5">
