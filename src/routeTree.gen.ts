@@ -9,8 +9,26 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VerSiteRouteImport } from './routes/ver-site'
+import { Route as PagamentosRouteImport } from './routes/pagamentos'
+import { Route as AtividadeRouteImport } from './routes/atividade'
 import { Route as IndexRouteImport } from './routes/index'
 
+const VerSiteRoute = VerSiteRouteImport.update({
+  id: '/ver-site',
+  path: '/ver-site',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagamentosRoute = PagamentosRouteImport.update({
+  id: '/pagamentos',
+  path: '/pagamentos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AtividadeRoute = AtividadeRouteImport.update({
+  id: '/atividade',
+  path: '/atividade',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +37,61 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/atividade': typeof AtividadeRoute
+  '/pagamentos': typeof PagamentosRoute
+  '/ver-site': typeof VerSiteRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/atividade': typeof AtividadeRoute
+  '/pagamentos': typeof PagamentosRoute
+  '/ver-site': typeof VerSiteRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/atividade': typeof AtividadeRoute
+  '/pagamentos': typeof PagamentosRoute
+  '/ver-site': typeof VerSiteRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/atividade' | '/pagamentos' | '/ver-site'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/atividade' | '/pagamentos' | '/ver-site'
+  id: '__root__' | '/' | '/atividade' | '/pagamentos' | '/ver-site'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AtividadeRoute: typeof AtividadeRoute
+  PagamentosRoute: typeof PagamentosRoute
+  VerSiteRoute: typeof VerSiteRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/ver-site': {
+      id: '/ver-site'
+      path: '/ver-site'
+      fullPath: '/ver-site'
+      preLoaderRoute: typeof VerSiteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pagamentos': {
+      id: '/pagamentos'
+      path: '/pagamentos'
+      fullPath: '/pagamentos'
+      preLoaderRoute: typeof PagamentosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/atividade': {
+      id: '/atividade'
+      path: '/atividade'
+      fullPath: '/atividade'
+      preLoaderRoute: typeof AtividadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +104,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AtividadeRoute: AtividadeRoute,
+  PagamentosRoute: PagamentosRoute,
+  VerSiteRoute: VerSiteRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

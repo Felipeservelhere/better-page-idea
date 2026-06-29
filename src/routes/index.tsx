@@ -3,9 +3,9 @@ import { useMemo, useState } from "react";
 import {
   Search, Bell, Plus, Filter, MoreHorizontal, ArrowUpRight, ArrowDownRight,
   KeyRound, RefreshCw, Send, CalendarClock, CheckCircle2, AlertTriangle,
-  XCircle, Wallet, Users, TrendingUp, Sparkles, ChevronRight, Crown,
-  LayoutDashboard, ClipboardList, Receipt, ExternalLink, LogOut,
+  XCircle, Wallet, Users, Sparkles,
 } from "lucide-react";
+import { Sidebar, PageHeader } from "@/components/sidebar";
 
 export const Route = createFileRoute("/")({
   head: () => ({
